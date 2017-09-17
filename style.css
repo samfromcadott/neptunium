@@ -27,6 +27,13 @@ body {
 	background-color: #60be2f;
 }
 
+.node {
+	position: relative;
+	background-color: #9136f7;
+	width: 10em;
+	height: 10em;
+}
+
 #top-bar {
 	background-color: #a86d71;
 }

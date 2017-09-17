@@ -1,3 +1,9 @@
+$('.node').draggable({
+	containment: "parent"
+})
+
+
+// Keyboard
 var keyboardHidden = false
 
 $("#hide-keyboard").click( () => {
