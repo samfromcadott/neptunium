@@ -1,11 +1,30 @@
 body {
 	margin: 0;
+	min-height: 100vh;
+	height: 100vh;
+
 	display: flex;
 	flex-direction: column;
 }
 
 .tool-bar {
-	min-height: 2em;
+	height: 2em;
+}
+
+.ui-label {
+	float: left;
+	position: relative;
+	top: 0.5em;
+	left: 0.5em;
+	background-color: #6595ee;
+}
+
+.ui-button {
+	float: right;
+	position: relative;
+	top: 0.5em;
+	right: 0.5em;
+	background-color: #60be2f;
 }
 
 #top-bar {
@@ -18,7 +37,7 @@ body {
 }
 
 #tool-panel {
-	width: 10em;
+	width: 13em;
 	background-color: #41d04b;
 }
 
@@ -35,7 +54,6 @@ body {
 	transform: translateX(-50%);
 
 	min-width: 30em;
-	min-height: 10em;
 	width: 70%;
 }
 

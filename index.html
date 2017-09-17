@@ -9,15 +9,23 @@
 	<script src="https://cdn.rawgit.com/stuartmemo/qwerty-hancock/master/dist/qwerty-hancock.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.10.0/Tone.min.js"></script>
 
+	<script src="ui.js" defer></script>
+
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id="top-bar" class="tool-bar"></div>
+
 	<div id="ui-container">
 		<div id="tool-panel"></div>
 		<div id="node-view"></div>
+
 		<div id="keyboard-container">
-			<div id="keyboard-bar" class="tool-bar"></div>
+			<div id="keyboard-bar" class="tool-bar">
+				<span class="ui-label">KEYBOARD</span>
+				<span id="hide-keyboard" class="ui-button">v</span>
+			</div>
+
 			<div id="keyboard"></div>
 		</div>
 	</div>
