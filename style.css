@@ -43,7 +43,32 @@ body {
 
 #node-view {
 	flex: 1;
-	background-color: #7842eb;
+
+	background-color: #fffff1;
+	--grid-color: #9fbbf2;
+	background-image: repeating-linear-gradient( /*Large horizontal lines*/
+		var(--grid-color),
+		var(--grid-color) 2px,
+		rgba(0, 0, 0, 0) 2px,
+		rgba(0, 0, 0, 0) 80px
+	), repeating-linear-gradient( /*Large verticle lines*/
+		90deg,
+		var(--grid-color),
+		var(--grid-color) 2px,
+		rgba(0, 0, 0, 0) 2px,
+		rgba(0, 0, 0, 0) 80px
+	), repeating-linear-gradient( /*Small horizontal lines*/
+		var(--grid-color),
+		var(--grid-color) 1px,
+		rgba(0, 0, 0, 0) 1px,
+		rgba(0, 0, 0, 0) 20px
+	), repeating-linear-gradient( /*Small verticle lines*/
+		90deg,
+		var(--grid-color),
+		var(--grid-color) 1px,
+		rgba(0, 0, 0, 0) 1px,
+		rgba(0, 0, 0, 0) 20px
+	);
 }
 
 #keyboard-container {
