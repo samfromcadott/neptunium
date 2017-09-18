@@ -1,11 +1,9 @@
 function updateUiHandlers() {
-	$('.node').draggable({
-		containment: "parent"
-	})
+	$('.node').draggable()
 }
 
 $('.tool-item').mousedown( () => {
-	$('#node-view').mouseup( (event) => {
+	$('#node-view').mouseup( (event) => { // BUG: Node creation happens with delay when mouseup on any element
 		//Get mouse location in current div
 		var mousePos = {x: event.offsetX, y: event.offsetY}
 
