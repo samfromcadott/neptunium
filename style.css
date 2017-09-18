@@ -90,7 +90,7 @@ body {
 		rgba(0, 0, 0, 0) 1px,
 		rgba(0, 0, 0, 0) 20px
 	);
-	background-attachment: scroll;
+	background-attachment: local;
 }
 
 #keyboard-container {
