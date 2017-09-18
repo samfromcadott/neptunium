@@ -5,10 +5,17 @@ body {
 
 	display: flex;
 	flex-direction: column;
+
+	user-select: none;
+	cursor: default;
 }
 
 .tool-bar {
 	height: 2em;
+}
+
+.tool-item {
+	background-color: #35a0e0;
 }
 
 .ui-label {
@@ -28,7 +35,7 @@ body {
 }
 
 .node {
-	position: relative;
+	position: absolute;
 	background-color: #9136f7;
 	width: 10em;
 	height: 10em;
@@ -43,13 +50,20 @@ body {
 	display: flex;
 }
 
+/*Tool Panel*/
 #tool-panel {
 	width: 13em;
 	background-color: #41d04b;
 }
 
+#tool-head {
+	background-color: #f7c01c;
+}
+
 #node-view {
 	flex: 1;
+	position: relative;
+	overflow: scroll;
 
 	background-color: #fffff1;
 	--grid-color: #9fbbf2;
@@ -76,6 +90,7 @@ body {
 		rgba(0, 0, 0, 0) 1px,
 		rgba(0, 0, 0, 0) 20px
 	);
+	background-attachment: scroll;
 }
 
 #keyboard-container {
