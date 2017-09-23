@@ -1,4 +1,20 @@
-function updateUiHandlers() {
+//Object that contains all the nodes for the synthesizer
+var nodeTree = {
+	inputNote: {}
+}
+
+function addNode() {
+	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
+		nodeTree[0] = {} //Add node zero
+	} else {
+		var nodeList = Object.keys(nodeTree) //Create Array of keys in nodeTree
+		var lastKey = parseInt( nodeList[nodeList.length - 2] ) //Get highest numbered node (The very last node will always be inputNote)
+
+		nodeTree[lastKey + 1] = {} //Create new node with key one higher than current highest
+	}
+}
+
+function updateUiHandlers() { //Adds jquery events to new nodes
 	$('.node').draggable()
 }
 
@@ -14,6 +30,10 @@ $('.tool-item').mousedown( () => {
 			top: mousePos.y + 'px',
 			left: mousePos.x + 'px'
 		}).appendTo('#node-view')
+
+		//Add node to nodeTree
+		addNode()
+		console.log(nodeTree)
 
 		updateUiHandlers()
 		$(this).unbind(event)
