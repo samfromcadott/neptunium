@@ -16,10 +16,11 @@ function addNode() {
 
 function updateUiHandlers() { //Adds jquery events to new nodes
 	$('.node').draggable()
+	$('#background-grid').draggable()
 }
 
 $('.tool-item').mousedown( () => {
-	$('#node-view').mouseup( (event) => { // BUG: Node creation happens with delay when mouseup on any element
+	$('#background-grid').mouseup( (event) => { // BUG: Node creation happens with delay when mouseup on any element
 		//Get mouse location in current div
 		var mousePos = {x: event.offsetX, y: event.offsetY}
 
@@ -29,7 +30,7 @@ $('.tool-item').mousedown( () => {
 		}).css({
 			top: mousePos.y + 'px',
 			left: mousePos.x + 'px'
-		}).appendTo('#node-view')
+		}).appendTo('#background-grid')
 
 		//Add node to nodeTree
 		addNode()

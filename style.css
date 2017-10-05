@@ -61,9 +61,19 @@ body {
 }
 
 #node-view {
-	flex: 1;
 	position: relative;
-	overflow: scroll;
+	overflow: hidden;
+	flex: 1;
+	background-attachment: local;
+}
+
+#background-grid {
+	position: absolute;
+	top: -40000vh;
+	left: -40000vh;
+
+	width: 80000vh;
+	height: 80000vh;
 
 	background-color: #fffff1;
 	--grid-color: #9fbbf2;
@@ -90,7 +100,7 @@ body {
 		rgba(0, 0, 0, 0) 1px,
 		rgba(0, 0, 0, 0) 20px
 	);
-	background-attachment: local;
+
 }
 
 #keyboard-container {
