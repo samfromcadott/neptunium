@@ -16,6 +16,14 @@ function addNode() {
 	}
 }
 
+
+for (var node in nodeTypes) {
+	if (nodeTypes.hasOwnProperty(node)) {
+		$('#tool-list').append('<li class="tool-item">'+node+'</li>')
+	}
+}
+
+
 function updateUiHandlers() { //Adds jquery events to new nodes
 	$('#background-grid').draggable()
 }
@@ -40,23 +48,23 @@ $('.tool-item').mousedown( () => {
 		newNodeDiv.appendTo('#background-grid')
 
 		newNode.position = { //Store node's position
-			top: mousePos.y,
-			left: mousePos.x
+		top: mousePos.y,
+		left: mousePos.x
+	}
+
+	newNodeDiv.draggable({
+		drag: function() {
+			newNode.position = $(this).position() //Update node position
+
 		}
 
-		newNodeDiv.draggable({
-			drag: function() {
-				newNode.position = $(this).position() //Update node position
-
-			}
-
-		})
-
-		console.log(nodeTree)
-
-		//Add node to nodeTree
-		$(this).unbind(event)
 	})
+
+	console.log(nodeTree)
+
+	//Add node to nodeTree
+	$(this).unbind(event)
+})
 })
 
 $('#node-view').bind( 'mousewheel', (event) => {
