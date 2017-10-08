@@ -1,4 +1,10 @@
 var nodeTypes = {
-	'Oscillator': {},
-	'Amplitude Envelope': {}
+	'Oscillator': {
+		css: {
+			'background-color': 'black'
+		}
+	},
+	'Amplitude Envelope': {
+		css: {}
+	}
 }

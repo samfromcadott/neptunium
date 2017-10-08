@@ -45,7 +45,8 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 			class: 'node'
 		})
 
-		newNodeDiv.css({
+		newNodeDiv.css(nodeTypes[newNode.type].css) //Apply node type style
+		newNodeDiv.css({ //Set node at corect positon
 			top: mousePos.y + 'px',
 			left: mousePos.x + 'px'
 		})
