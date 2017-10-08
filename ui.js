@@ -28,12 +28,17 @@ function updateUiHandlers() { //Adds jquery events to new nodes
 	$('#background-grid').draggable()
 }
 
-$('.tool-item').mousedown( () => {
+$('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, not inline
+
+	var newNodeType = $(this).text() //The type of the selected node
+
 	$('#background-grid').mouseup( (event) => { // BUG: Node creation happens with delay when mouseup on any element
 		//Get mouse location in current div
 		var mousePos = {x: event.offsetX, y: event.offsetY}
 
 		var newNode = addNode()
+
+		newNode.type = newNodeType //Assign type
 
 		//Create and add node
 		var newNodeDiv = $('<div />', {
@@ -48,23 +53,23 @@ $('.tool-item').mousedown( () => {
 		newNodeDiv.appendTo('#background-grid')
 
 		newNode.position = { //Store node's position
-		top: mousePos.y,
-		left: mousePos.x
-	}
-
-	newNodeDiv.draggable({
-		drag: function() {
-			newNode.position = $(this).position() //Update node position
-
+			top: mousePos.y,
+			left: mousePos.x
 		}
 
+		newNodeDiv.draggable({
+			drag: function() {
+				newNode.position = $(this).position() //Update node position
+
+			}
+
+		})
+
+		console.log(nodeTree)
+
+		//Add node to nodeTree
+		$(this).unbind(event)
 	})
-
-	console.log(nodeTree)
-
-	//Add node to nodeTree
-	$(this).unbind(event)
-})
 })
 
 $('#node-view').bind( 'mousewheel', (event) => {
