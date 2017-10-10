@@ -16,6 +16,30 @@ function addNode() {
 	}
 }
 
+function buildNodeUI(nodeType) {
+	var newNodeDiv = $('<div />', { //Create the node div
+		class: 'node'
+	})
+
+	for (var key in nodeTypes[nodeType].ui) {
+		if (nodeTypes[nodeType].ui.hasOwnProperty(key)) {
+			var currentElement = nodeTypes[nodeType].ui[key]
+
+			if (currentElement.type == 'title') {
+				newNodeDiv.prepend('<span class="title">'+currentElement.text+'</span>')
+
+			} else {
+
+			}
+
+		}
+	}
+
+	newNodeDiv.css(nodeTypes[nodeType].css) //Apply node type style
+
+	return newNodeDiv
+
+}
 
 for (var node in nodeTypes) {
 	if (nodeTypes.hasOwnProperty(node)) {
@@ -41,11 +65,12 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 		newNode.type = newNodeType //Assign type
 
 		//Create and add node
-		var newNodeDiv = $('<div />', {
-			class: 'node'
-		})
+		// var newNodeDiv = $('<div />', {
+		// 	class: 'node'
+		// })
+		var newNodeDiv = buildNodeUI(newNodeType)
 
-		newNodeDiv.css(nodeTypes[newNode.type].css) //Apply node type style
+		// newNodeDiv.css(nodeTypes[newNode.type].css) //Apply node type style
 		newNodeDiv.css({ //Set node at corect positon
 			top: mousePos.y + 'px',
 			left: mousePos.x + 'px'
