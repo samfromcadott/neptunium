@@ -1,26 +1,3 @@
-//Object that contains all the nodes for the synthesizer
-var nodeTree = {
-	inputNote: {}
-}
-
-function addNode(type) {
-	var nodeObject = {
-		type: type,
-		values: Object.assign({}, nodeTypes[type].values) //Copy default values form nodeTypes
-	}
-
-	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
-		nodeTree[0] = nodeObject //Add node zero
-		return nodeTree[0]
-	} else {
-		var nodeList = Object.keys(nodeTree) //Create Array of keys in nodeTree
-		var lastKey = parseInt( nodeList[nodeList.length - 2] ) //Get highest numbered node (The very last node will always be inputNote)
-
-		nodeTree[lastKey + 1] = nodeObject //Create new node with key one higher than current highest
-		return nodeTree[lastKey + 1]
-	}
-}
-
 function buildNodeUI(node) {
 	var newNodeDiv = $('<div />', { //Create the node div
 		class: 'node'
@@ -79,26 +56,19 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 
 		var newNode = addNode(newNodeType)
 
-		newNode.type = newNodeType //Assign type
-
-		//Create and add node
-		// var newNodeDiv = $('<div />', {
-		// 	class: 'node'
-		// })
 		var newNodeDiv = buildNodeUI(newNode)
 
-		// newNodeDiv.css(nodeTypes[newNode.type].css) //Apply node type style
 		newNodeDiv.css({ //Set node at corect positon
 			top: mousePos.y + 'px',
 			left: mousePos.x + 'px'
 		})
 
-		newNodeDiv.appendTo('#background-grid')
-
 		newNode.position = { //Store node's position
 			top: mousePos.y,
 			left: mousePos.x
 		}
+
+		newNodeDiv.appendTo('#background-grid')
 
 		newNodeDiv.draggable({
 			handle: '.title',
