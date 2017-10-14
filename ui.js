@@ -71,10 +71,7 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 				newNode.position = $(this).position() //Update node position
 
 			}
-
 		})
-
-		console.log(nodeTree)
 
 		//Add node to nodeTree
 		$(this).unbind(event)
