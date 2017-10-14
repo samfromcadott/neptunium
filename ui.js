@@ -3,39 +3,54 @@ var nodeTree = {
 	inputNote: {}
 }
 
-function addNode() {
+function addNode(type) {
+	var nodeObject = {
+		type: type,
+		values: Object.assign({}, nodeTypes[type].values) //Copy default values form nodeTypes
+	}
+
 	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
-		nodeTree[0] = {} //Add node zero
+		nodeTree[0] = nodeObject //Add node zero
 		return nodeTree[0]
 	} else {
 		var nodeList = Object.keys(nodeTree) //Create Array of keys in nodeTree
 		var lastKey = parseInt( nodeList[nodeList.length - 2] ) //Get highest numbered node (The very last node will always be inputNote)
 
-		nodeTree[lastKey + 1] = {} //Create new node with key one higher than current highest
+		nodeTree[lastKey + 1] = nodeObject //Create new node with key one higher than current highest
 		return nodeTree[lastKey + 1]
 	}
 }
 
-function buildNodeUI(nodeType) {
+function buildNodeUI(node) {
 	var newNodeDiv = $('<div />', { //Create the node div
 		class: 'node'
 	})
 
-	for (var key in nodeTypes[nodeType].ui) {
-		if (nodeTypes[nodeType].ui.hasOwnProperty(key)) {
-			var currentElement = nodeTypes[nodeType].ui[key]
+	for (var key in nodeTypes[node.type].ui) {
+		if (nodeTypes[node.type].ui.hasOwnProperty(key)) {
+			var currentElement = nodeTypes[node.type].ui[key]
 
 			if (currentElement.type == 'title') {
 				newNodeDiv.prepend('<span class="title">'+currentElement.text+'</span>')
 
-			} else {
+			} else if (currentElement.type == 'knob') {
+				var newKnob = $('<input type="text" class="dial">').knob({
+					change: function (v) {
+						node.values[currentElement.value] = v //Update the value
+						console.log(nodeTree)
+					},
+					min: currentElement.min,
+					max: currentElement.max
+				})
+
+				newNodeDiv.append(newKnob)
 
 			}
 
 		}
 	}
 
-	newNodeDiv.css(nodeTypes[nodeType].css) //Apply node type style
+	newNodeDiv.css(nodeTypes[node.type].css) //Apply node type style
 
 	return newNodeDiv
 
@@ -49,7 +64,9 @@ for (var node in nodeTypes) {
 
 
 function updateUiHandlers() { //Adds jquery events to new nodes
-	$('#background-grid').draggable()
+	$('#background-grid').draggable({
+		cancel: '.node'
+	})
 }
 
 $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, not inline
@@ -60,7 +77,7 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 		//Get mouse location in current div
 		var mousePos = {x: event.offsetX, y: event.offsetY}
 
-		var newNode = addNode()
+		var newNode = addNode(newNodeType)
 
 		newNode.type = newNodeType //Assign type
 
@@ -68,7 +85,7 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 		// var newNodeDiv = $('<div />', {
 		// 	class: 'node'
 		// })
-		var newNodeDiv = buildNodeUI(newNodeType)
+		var newNodeDiv = buildNodeUI(newNode)
 
 		// newNodeDiv.css(nodeTypes[newNode.type].css) //Apply node type style
 		newNodeDiv.css({ //Set node at corect positon
@@ -84,6 +101,7 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 		}
 
 		newNodeDiv.draggable({
+			handle: '.title',
 			drag: function() {
 				newNode.position = $(this).position() //Update node position
 

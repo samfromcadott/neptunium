@@ -37,8 +37,6 @@ body {
 .node {
 	position: absolute;
 	background-color: #9136f7;
-	width: 10em;
-	height: 10em;
 }
 
 #top-bar {
