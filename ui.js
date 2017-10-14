@@ -33,17 +33,12 @@ function buildNodeUI(node) {
 
 }
 
+// Node List
+
 for (var node in nodeTypes) {
 	if (nodeTypes.hasOwnProperty(node)) {
 		$('#tool-list').append('<li class="tool-item">'+node+'</li>')
 	}
-}
-
-
-function updateUiHandlers() { //Adds jquery events to new nodes
-	$('#background-grid').draggable({
-		cancel: '.node'
-	})
 }
 
 $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, not inline
@@ -86,6 +81,8 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 	})
 })
 
+// Node View
+
 $('#node-view').bind( 'mousewheel', (event) => {
 	// console.log(event.originalEvent.deltaY)
 	var currentZoom = $('#node-view').css('zoom')
@@ -102,7 +99,12 @@ $('#node-view').bind( 'mousewheel', (event) => {
 	$('#node-view').animate({ 'zoom': currentZoom}, 50)
 })
 
+$('#background-grid').draggable({ //Make view position moveable
+	cancel: '.node'
+})
+
 // Keyboard
+
 var keyboardHidden = false
 
 $("#hide-keyboard").click( () => {
@@ -116,5 +118,3 @@ $("#hide-keyboard").click( () => {
 		$("#hide-keyboard").text('v')
 	}
 })
-
-updateUiHandlers()
