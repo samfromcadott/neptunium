@@ -5,6 +5,10 @@ function buildNodeUI(node) {
 		class: 'node'
 	})
 
+	var controlArea = $('<div />', { //Create the node div
+		class: 'node-control'
+	})
+
 	for (var key in nodeTypes[node.type].ui) {
 		if (nodeTypes[node.type].ui.hasOwnProperty(key)) {
 			var currentElement = nodeTypes[node.type].ui[key]
@@ -13,10 +17,10 @@ function buildNodeUI(node) {
 				newNodeDiv.prepend('<span class="title">'+currentElement.text+'</span>')
 
 			} else if (currentElement.type == 'knob') {
-				addKnob(node, currentElement).appendTo(newNodeDiv)
+				addKnob(node, currentElement).appendTo(controlArea)
 
 			} else if (currentElement.type == 'number') {
-				addNumber(node, currentElement).appendTo(newNodeDiv)
+				addNumber(node, currentElement).appendTo(controlArea)
 
 			}
 
@@ -24,6 +28,7 @@ function buildNodeUI(node) {
 	}
 
 	newNodeDiv.css(nodeTypes[node.type].css) //Apply node type style
+	newNodeDiv.append(controlArea)
 
 	return newNodeDiv
 
