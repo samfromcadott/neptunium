@@ -1,3 +1,5 @@
+// Node Building
+
 function buildNodeUI(node) {
 	var newNodeDiv = $('<div />', { //Create the node div
 		class: 'node'
@@ -11,16 +13,10 @@ function buildNodeUI(node) {
 				newNodeDiv.prepend('<span class="title">'+currentElement.text+'</span>')
 
 			} else if (currentElement.type == 'knob') {
-				var newKnob = $('<input type="text" class="dial">').knob({
-					change: function (v) {
-						node.values[currentElement.value] = v //Update the value
-						console.log(nodeTree)
-					},
-					min: currentElement.min,
-					max: currentElement.max
-				})
+				addKnob(node, currentElement).appendTo(newNodeDiv)
 
-				newNodeDiv.append(newKnob)
+			} else if (currentElement.type == 'number') {
+				addNumber(node, currentElement).appendTo(newNodeDiv)
 
 			}
 
@@ -31,6 +27,58 @@ function buildNodeUI(node) {
 
 	return newNodeDiv
 
+}
+
+function addKnob(node, element) {
+	//Wrapper for knob and label
+	var knobWrapper = $('<div class="wrapper"></div>')
+
+	//Knob
+	var newKnob = $('<input type="text" class="knob" value="'+node.values[element.value]+'">').knob({
+		change: function (v) {
+			node.values[element.value] = v //Update the value
+		},
+		min: element.min,
+		max: element.max,
+		width: 80,
+		height: 80,
+		thickness: 0.3,
+		angleOffset: -125,
+		angleArc: 250
+	})
+	newKnob.appendTo(knobWrapper)
+
+	//Label
+	var knobLabel = $('<span class="label">'+element.label+'</span>')
+	knobLabel.prependTo(knobWrapper)
+
+	//Return wrapper
+	return knobWrapper
+
+}
+
+function addNumber(node, element) {
+	//Wrapper for number and label
+	var numberWrapper = $('<div class="wrapper"></div>')
+
+	//Number input
+	var numberInput = $('<input />', {
+		class: 'number-input',
+		type: 'number',
+		value: node.values[element.value],
+		min: element.min,
+		max: element.max,
+		change: function () {
+			node.values[element.value] = parseInt( $(this).val(), 10 ) //Update value
+		}
+	})
+	numberInput.appendTo(numberWrapper)
+
+	//Label
+	var numberLabel = $('<span class="label">'+element.label+'</span>')
+	numberLabel.prependTo(numberWrapper)
+
+	return numberWrapper
 }
 
 // Node List
