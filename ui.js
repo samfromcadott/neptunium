@@ -22,6 +22,8 @@ function buildNodeUI(node) {
 			} else if (currentElement.type == 'number') {
 				addNumber(node, currentElement).appendTo(controlArea)
 
+			} else if (currentElement.type == 'dropdown') {
+				addDropdown(node, currentElement).appendTo(controlArea)
 			}
 
 		}
@@ -84,6 +86,33 @@ function addNumber(node, element) {
 	numberLabel.prependTo(numberWrapper)
 
 	return numberWrapper
+}
+
+function addDropdown(node, element) {
+	//Wrapper for dropdown and label
+	var dropdownWrapper = $('<div class="wrapper"></div>')
+
+	//Number input
+	var dropdown = $('<select />', {
+		class: 'dropdown-input',
+		change: function () {
+			node.values[element.value] = $(this).val() //Update value
+		}
+	})
+	dropdown.appendTo(dropdownWrapper)
+
+	//Options
+	for (var i = 0; i < element.options.length; i++) {
+		dropdown.append('<option value="'+element.options[i].value+'">'+element.options[i].label+'</option>')
+	}
+
+	dropdown.val(node.values[element.value])//Set dropdown value
+
+	//Label
+	var dropdownLabel = $('<span class="label">'+element.label+'</span>')
+	dropdownLabel.prependTo(dropdownWrapper)
+
+	return dropdownWrapper
 }
 
 // Node List
