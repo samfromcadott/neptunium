@@ -19,7 +19,7 @@ var nodeTypes = {
 			]}
 		},
 		css: {
-			'background-color': 'green'
+			'background-color': 'white'
 		}
 	},
 	'Amplitude Envelope': {
