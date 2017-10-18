@@ -5,10 +5,25 @@ function buildNodeUI(node) {
 		class: 'node'
 	})
 
-	var controlArea = $('<div />', { //Create the node div
+	//Create the bus area
+	var busArea = $('<div />', { //Create the bus area div
+		class: 'node-bus'
+	})
+
+	var busInWrapper = $('<div />', { //Create the bus in wrapper
+		class: 'bus-in-wrapper'
+	}).appendTo(busArea)
+
+	var busOutWrapper = $('<div />', { //Create the bus out wrapper
+		class: 'bus-out-wrapper'
+	}).appendTo(busArea)
+
+	//Create the control area div
+	var controlArea = $('<div />', {
 		class: 'node-control'
 	})
 
+	//Add nodes
 	for (var key in nodeTypes[node.type].ui) {
 		if (nodeTypes[node.type].ui.hasOwnProperty(key)) {
 			var currentElement = nodeTypes[node.type].ui[key]
@@ -24,12 +39,20 @@ function buildNodeUI(node) {
 
 			} else if (currentElement.type == 'dropdown') {
 				addDropdown(node, currentElement).appendTo(controlArea)
+
+			} else if (currentElement.type == 'bus-in') {
+				addBus(node, currentElement).appendTo(busInWrapper)
+
+			} else if (currentElement.type == 'bus-out') {
+				addBus(node, currentElement).appendTo(busOutWrapper)
+
 			}
 
 		}
 	}
 
 	newNodeDiv.css(nodeTypes[node.type].css) //Apply node type style
+	newNodeDiv.append(busArea)
 	newNodeDiv.append(controlArea)
 
 	return newNodeDiv
@@ -113,6 +136,16 @@ function addDropdown(node, element) {
 	dropdownLabel.prependTo(dropdownWrapper)
 
 	return dropdownWrapper
+}
+
+function addBus(node, element) {
+	var newBus = $('<span />', {
+		class: 'bus',
+		text: element.label
+	})
+
+	return newBus
+
 }
 
 // Node List

@@ -8,6 +8,8 @@ var nodeTypes = {
 		},
 		ui: {
 			title: {type: 'title', text: 'Oscillator'},
+			cvIn: {type: 'bus-in', label: 'CV In'},
+			audioOut: {type: 'bus-out', label: 'Audio Out'},
 			frequency: {type: 'number', label: 'Frequency', value: 'frequency', min: 20, max: 20000},
 			detune: {type: 'number', label: 'Detune', value: 'detune', min: -2400, max: 2400},
 			phase: {type: 'knob', label: 'Phase', value: 'phase', min: 0, max: 360},
