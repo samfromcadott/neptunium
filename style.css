@@ -75,6 +75,26 @@ body {
 	text-align: right;
 }
 
+.bus-in-wrapper > .bus::before {
+	content: " "; /*Blank needed to make element appear*/
+	min-width: 1em;
+	min-height: 1em;
+	position: absolute;
+	left: -0.5em;
+	background-color: blue;
+	border-radius: 0.5em;
+}
+
+.bus-out-wrapper > .bus::after {
+	content: " "; /*Blank needed to make element appear*/
+	min-width: 1em;
+	min-height: 1em;
+	position: absolute;
+	right: -0.5em;
+	background-color: blue;
+	border-radius: 0.5em;
+}
+
 .node-control {
 	display: inline;
 }
