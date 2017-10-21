@@ -8,22 +8,31 @@ body {
 
 	user-select: none;
 	cursor: default;
+
+	font-family: 'AnkaCoderNarrowRegular', monospace;
 }
 
 .tool-bar {
 	height: 2em;
+	background-color: #1d5866;
 }
 
 .tool-item {
-	background-color: #35a0e0;
+	color: #131313;
+}
+
+.tool-item:hover {
+	color: #1d5866;
+	font-weight: bold;
 }
 
 .ui-label {
-	float: left;
-	position: relative;
-	top: 0.5em;
-	left: 0.5em;
-	background-color: #6595ee;
+	min-height: 100%;
+	display: inline-flex;
+	align-items: center;
+	padding-left: 0.35em;
+	color: #ffffff;
+	font-size: 1.2em;
 }
 
 .ui-button {
@@ -41,9 +50,8 @@ body {
 	flex-direction: column;
 	padding: 0.75em;
 	border-radius: 0.75em;
-	border: 3px solid black;
-	box-shadow: 4px 4px black;
-	font-family: monospace;
+	border: 2px solid black;
+	box-shadow: 3px 3px black;
 	max-width: 24em;
 }
 
@@ -77,21 +85,23 @@ body {
 
 .bus-in-wrapper > .bus::before {
 	content: " "; /*Blank needed to make element appear*/
-	min-width: 1em;
-	min-height: 1em;
+	min-width: 0.7em;
+	min-height: 0.7em;
 	position: absolute;
 	left: -0.5em;
 	background-color: blue;
+	border: 2px solid black;
 	border-radius: 0.5em;
 }
 
 .bus-out-wrapper > .bus::after {
 	content: " "; /*Blank needed to make element appear*/
-	min-width: 1em;
-	min-height: 1em;
+	min-width: 0.7em;
+	min-height: 0.7em;
 	position: absolute;
 	right: -0.5em;
 	background-color: blue;
+	border: 2px solid black;
 	border-radius: 0.5em;
 }
 
@@ -123,7 +133,14 @@ body {
 }
 
 #top-bar {
-	background-color: #a86d71;
+	background-color: #ffffff;
+	color: #131313;
+}
+
+#top-bar > .ui-label {
+	color: #131313;
+	font-weight: bold;
+	font-size: 1.5em;
 }
 
 #ui-container {
@@ -134,11 +151,17 @@ body {
 /*Tool Panel*/
 #tool-panel {
 	width: 13em;
-	background-color: #41d04b;
+	background-color: #ffffff;
 }
 
 #tool-head {
-	background-color: #f7c01c;
+
+}
+
+#tool-list {
+	list-style: none;
+	padding: 0;
+	margin: 0.5em;
 }
 
 #node-view {
@@ -146,6 +169,8 @@ body {
 	overflow: hidden;
 	flex: 1;
 	background-attachment: local;
+	border-top: 2px solid black;
+	border-left: 2px solid black;
 }
 
 #background-grid {
@@ -193,13 +218,16 @@ body {
 
 	min-width: 30em;
 	width: 70%;
+
+	border: 2px solid black;
+	border-bottom: 0;
 }
 
 #keyboard-bar {
-	background-color: #d840fc;
+
 }
 
 #keyboard {
 	min-height: 8em;
-	background-color: #8ebd9e;
+	background-color: #ffffff;
 }
