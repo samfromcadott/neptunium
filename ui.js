@@ -160,7 +160,15 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 
 	var newNodeType = $(this).text() //The type of the selected node
 
-	$('#background-grid').mouseup( (event) => { // BUG: Node creation happens with delay when mouseup on any element
+	$('#background-grid').mousedown( function (event) {
+		$('#background-grid').off('mouseup', dropHandler)
+	})
+
+	$('#top-bar, #tool-panel, #keyboard-container').mouseup( function (event) {
+		$('#background-grid').off('mouseup', dropHandler)
+	})
+
+	var dropHandler = function (event) {
 		//Get mouse location in current div
 		var mousePos = {x: event.offsetX, y: event.offsetY}
 
@@ -187,10 +195,10 @@ $('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, n
 
 			}
 		})
+	}
 
-		//Add node to nodeTree
-		$(this).unbind(event)
-	})
+	$('#background-grid').on('mouseup', dropHandler)
+
 })
 
 // Node View
