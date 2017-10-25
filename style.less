@@ -1,0 +1,244 @@
+//Variables
+
+@standard-border: 2px solid black;
+
+//Color scheme
+
+@primary: #1d5866;
+
+@background-color: #f9f8f5;
+@text-color: #111b21;
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+
+	user-select: none;
+	cursor: default;
+
+	font-family: 'AnkaCoderNarrowRegular', monospace;
+}
+
+.tool-bar {
+	height: 2em;
+	background-color: @primary;
+}
+
+.tool-item {
+	color: @text-color;
+
+	&:hover {
+		color: @primary;
+		font-weight: bold;
+	}
+}
+
+.ui-label {
+	min-height: 100%;
+	display: inline-flex;
+	align-items: center;
+	padding-left: 0.35em;
+	color: @background-color;
+	font-size: 1.2em;
+}
+
+.ui-button {
+	float: right;
+	position: relative;
+	top: 0.5em;
+	right: 0.5em;
+	background-color: #60be2f;
+}
+
+.node {
+	position: absolute;
+	background-color: #9136f7;
+	display: flex;
+	flex-direction: column;
+	padding: 0.75em;
+	border-radius: 0.75em;
+	border: @standard-border;
+	box-shadow: 3px 3px black;
+	max-width: 24em;
+}
+
+.node-bus {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.bus-in-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.bus-out-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.bus-in-wrapper > .bus {
+	width: 100%;
+	text-align: left;
+
+	&:before {
+		content: " "; /*Blank needed to make element appear*/
+		min-width: 0.7em;
+		min-height: 0.7em;
+		position: absolute;
+		left: -0.5em;
+		background-color: blue;
+		border: @standard-border;
+		border-radius: 0.5em;
+	}
+}
+
+.bus-out-wrapper > .bus {
+	width: 100%;
+	text-align: right;
+
+	&:after {
+		content: " "; /*Blank needed to make element appear*/
+		min-width: 0.7em;
+		min-height: 0.7em;
+		position: absolute;
+		right: -0.5em;
+		background-color: blue;
+		border: @standard-border;
+		border-radius: 0.5em;
+	}
+}
+
+.node-control {
+	display: inline;
+}
+
+.title {
+	min-width: 100%;
+}
+
+.wrapper{
+	display: inline-flex;
+	flex-direction: column;
+	width: 5em;
+	height: 5em;
+	margin: 0.5em;
+}
+
+.label {
+	text-align: center;
+}
+
+.number-input {
+	background-color: inherit;
+	color: inherit;
+	border: 0;
+	width: 100%;
+}
+
+#top-bar {
+	background-color: @background-color;
+	color: @text-color;
+}
+
+#top-bar > .ui-label {
+	color: @text-color;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+#ui-container {
+	flex: 1;
+	display: flex;
+}
+
+/*Tool Panel*/
+#tool-panel {
+	width: 13em;
+	background-color: @background-color;
+}
+
+#tool-head {
+
+}
+
+#tool-list {
+	list-style: none;
+	padding: 0;
+	margin: 0.5em;
+}
+
+#node-view {
+	position: relative;
+	overflow: hidden;
+	flex: 1;
+	background-attachment: local;
+	border-top: @standard-border;
+	border-left: @standard-border;
+}
+
+#background-grid {
+	position: absolute;
+	top: -40000vh;
+	left: -40000vh;
+
+	width: 80000vh;
+	height: 80000vh;
+
+	background-color: @background-color;
+	--grid-color: #9fbbf2;
+	background-image: repeating-linear-gradient( /*Large horizontal lines*/
+		var(--grid-color),
+		var(--grid-color) 2px,
+		rgba(0, 0, 0, 0) 2px,
+		rgba(0, 0, 0, 0) 80px
+	), repeating-linear-gradient( /*Large verticle lines*/
+		90deg,
+		var(--grid-color),
+		var(--grid-color) 2px,
+		rgba(0, 0, 0, 0) 2px,
+		rgba(0, 0, 0, 0) 80px
+	), repeating-linear-gradient( /*Small horizontal lines*/
+		var(--grid-color),
+		var(--grid-color) 1px,
+		rgba(0, 0, 0, 0) 1px,
+		rgba(0, 0, 0, 0) 20px
+	), repeating-linear-gradient( /*Small verticle lines*/
+		90deg,
+		var(--grid-color),
+		var(--grid-color) 1px,
+		rgba(0, 0, 0, 0) 1px,
+		rgba(0, 0, 0, 0) 20px
+	);
+
+}
+
+#keyboard-container {
+	position: fixed;
+
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+
+	min-width: 30em;
+	width: 70%;
+
+	border: @standard-border;
+	border-bottom: 0;
+}
+
+#keyboard-bar {
+
+}
+
+#keyboard {
+	min-height: 8em;
+	background-color: @background-color;
+}

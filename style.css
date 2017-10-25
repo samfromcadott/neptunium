@@ -1,233 +1,169 @@
 body {
-	margin: 0;
-	min-height: 100vh;
-	height: 100vh;
-
-	display: flex;
-	flex-direction: column;
-
-	user-select: none;
-	cursor: default;
-
-	font-family: 'AnkaCoderNarrowRegular', monospace;
+  margin: 0;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  cursor: default;
+  font-family: 'AnkaCoderNarrowRegular', monospace;
 }
-
 .tool-bar {
-	height: 2em;
-	background-color: #1d5866;
+  height: 2em;
+  background-color: #1d5866;
 }
-
 .tool-item {
-	color: #131313;
+  color: #111b21;
 }
-
 .tool-item:hover {
-	color: #1d5866;
-	font-weight: bold;
+  color: #1d5866;
+  font-weight: bold;
 }
-
 .ui-label {
-	min-height: 100%;
-	display: inline-flex;
-	align-items: center;
-	padding-left: 0.35em;
-	color: #ffffff;
-	font-size: 1.2em;
+  min-height: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.35em;
+  color: #f9f8f5;
+  font-size: 1.2em;
 }
-
 .ui-button {
-	float: right;
-	position: relative;
-	top: 0.5em;
-	right: 0.5em;
-	background-color: #60be2f;
+  float: right;
+  position: relative;
+  top: 0.5em;
+  right: 0.5em;
+  background-color: #60be2f;
 }
-
 .node {
-	position: absolute;
-	background-color: #9136f7;
-	display: flex;
-	flex-direction: column;
-	padding: 0.75em;
-	border-radius: 0.75em;
-	border: 2px solid black;
-	box-shadow: 3px 3px black;
-	max-width: 24em;
+  position: absolute;
+  background-color: #9136f7;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75em;
+  border-radius: 0.75em;
+  border: 2px solid black;
+  box-shadow: 3px 3px black;
+  max-width: 24em;
 }
-
 .node-bus {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
-
 .bus-in-wrapper {
-	display: flex;
-	flex-direction: column;
-	width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
-
 .bus-out-wrapper {
-	display: flex;
-	flex-direction: column;
-	width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
-
 .bus-in-wrapper > .bus {
-	width: 100%;
-	text-align: left;
+  width: 100%;
+  text-align: left;
 }
-
+.bus-in-wrapper > .bus:before {
+  content: " ";
+  /*Blank needed to make element appear*/
+  min-width: 0.7em;
+  min-height: 0.7em;
+  position: absolute;
+  left: -0.5em;
+  background-color: blue;
+  border: 2px solid black;
+  border-radius: 0.5em;
+}
 .bus-out-wrapper > .bus {
-	width: 100%;
-	text-align: right;
+  width: 100%;
+  text-align: right;
 }
-
-.bus-in-wrapper > .bus::before {
-	content: " "; /*Blank needed to make element appear*/
-	min-width: 0.7em;
-	min-height: 0.7em;
-	position: absolute;
-	left: -0.5em;
-	background-color: blue;
-	border: 2px solid black;
-	border-radius: 0.5em;
+.bus-out-wrapper > .bus:after {
+  content: " ";
+  /*Blank needed to make element appear*/
+  min-width: 0.7em;
+  min-height: 0.7em;
+  position: absolute;
+  right: -0.5em;
+  background-color: blue;
+  border: 2px solid black;
+  border-radius: 0.5em;
 }
-
-.bus-out-wrapper > .bus::after {
-	content: " "; /*Blank needed to make element appear*/
-	min-width: 0.7em;
-	min-height: 0.7em;
-	position: absolute;
-	right: -0.5em;
-	background-color: blue;
-	border: 2px solid black;
-	border-radius: 0.5em;
-}
-
 .node-control {
-	display: inline;
+  display: inline;
 }
-
 .title {
-	min-width: 100%;
+  min-width: 100%;
 }
-
-.wrapper{
-	display: inline-flex;
-	flex-direction: column;
-	width: 5em;
-	height: 5em;
-	margin: 0.5em;
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  width: 5em;
+  height: 5em;
+  margin: 0.5em;
 }
-
 .label {
-	text-align: center;
+  text-align: center;
 }
-
 .number-input {
-	background-color: inherit;
-	color: inherit;
-	border: 0;
-	width: 100%;
+  background-color: inherit;
+  color: inherit;
+  border: 0;
+  width: 100%;
 }
-
 #top-bar {
-	background-color: #ffffff;
-	color: #131313;
+  background-color: #f9f8f5;
+  color: #111b21;
 }
-
 #top-bar > .ui-label {
-	color: #131313;
-	font-weight: bold;
-	font-size: 1.5em;
+  color: #111b21;
+  font-weight: bold;
+  font-size: 1.5em;
 }
-
 #ui-container {
-	flex: 1;
-	display: flex;
+  flex: 1;
+  display: flex;
 }
-
 /*Tool Panel*/
 #tool-panel {
-	width: 13em;
-	background-color: #ffffff;
+  width: 13em;
+  background-color: #f9f8f5;
 }
-
-#tool-head {
-
-}
-
 #tool-list {
-	list-style: none;
-	padding: 0;
-	margin: 0.5em;
+  list-style: none;
+  padding: 0;
+  margin: 0.5em;
 }
-
 #node-view {
-	position: relative;
-	overflow: hidden;
-	flex: 1;
-	background-attachment: local;
-	border-top: 2px solid black;
-	border-left: 2px solid black;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  background-attachment: local;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
 }
-
 #background-grid {
-	position: absolute;
-	top: -40000vh;
-	left: -40000vh;
-
-	width: 80000vh;
-	height: 80000vh;
-
-	background-color: #fffff1;
-	--grid-color: #9fbbf2;
-	background-image: repeating-linear-gradient( /*Large horizontal lines*/
-		var(--grid-color),
-		var(--grid-color) 2px,
-		rgba(0, 0, 0, 0) 2px,
-		rgba(0, 0, 0, 0) 80px
-	), repeating-linear-gradient( /*Large verticle lines*/
-		90deg,
-		var(--grid-color),
-		var(--grid-color) 2px,
-		rgba(0, 0, 0, 0) 2px,
-		rgba(0, 0, 0, 0) 80px
-	), repeating-linear-gradient( /*Small horizontal lines*/
-		var(--grid-color),
-		var(--grid-color) 1px,
-		rgba(0, 0, 0, 0) 1px,
-		rgba(0, 0, 0, 0) 20px
-	), repeating-linear-gradient( /*Small verticle lines*/
-		90deg,
-		var(--grid-color),
-		var(--grid-color) 1px,
-		rgba(0, 0, 0, 0) 1px,
-		rgba(0, 0, 0, 0) 20px
-	);
-
+  position: absolute;
+  top: -40000vh;
+  left: -40000vh;
+  width: 80000vh;
+  height: 80000vh;
+  background-color: #f9f8f5;
+  --grid-color: #9fbbf2;
+  background-image: repeating-linear-gradient(/*Large horizontal lines*/ var(--grid-color), var(--grid-color) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 80px), repeating-linear-gradient(/*Large verticle lines*/ 90deg, var(--grid-color), var(--grid-color) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 80px), repeating-linear-gradient(/*Small horizontal lines*/ var(--grid-color), var(--grid-color) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 20px), repeating-linear-gradient(/*Small verticle lines*/ 90deg, var(--grid-color), var(--grid-color) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 20px);
 }
-
 #keyboard-container {
-	position: fixed;
-
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-
-	min-width: 30em;
-	width: 70%;
-
-	border: 2px solid black;
-	border-bottom: 0;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 30em;
+  width: 70%;
+  border: 2px solid black;
+  border-bottom: 0;
 }
-
-#keyboard-bar {
-
-}
-
 #keyboard {
-	min-height: 8em;
-	background-color: #ffffff;
+  min-height: 8em;
+  background-color: #f9f8f5;
 }
