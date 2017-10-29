@@ -185,7 +185,7 @@ $('.tool-item').mousedown( function(event) {
 
 				//Make node draggable
 				newNodeDiv.draggable({
-					handle: '.title',
+					cancel: '.node-control, .node-bus',
 					drag: function() {
 						newNode.position = $(this).position() //Update node position
 
