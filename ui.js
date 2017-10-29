@@ -188,8 +188,20 @@ $('.tool-item').mousedown( function(event) {
 					cancel: '.node-control, .node-bus',
 					drag: function() {
 						newNode.position = $(this).position() //Update node position
-
+					},
+					start: function () {
+						newNodeDiv.css({
+							'box-shadow': '6px 6px black',
+							'z-index': '2'
+						})
+					},
+					stop: function() {
+						newNodeDiv.css({
+							'box-shadow': '3px 3px black',
+							'z-index': '1'
+						})
 					}
+
 				})
 
 			}
