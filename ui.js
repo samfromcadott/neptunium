@@ -156,49 +156,45 @@ for (var node in nodeTypes) {
 	}
 }
 
-$('.tool-item').mousedown( function () { // NOTE: Requires anonymous function, not inline
+$('.tool-item').mousedown( function(event) {
+	if (event.which == 1) { //Only fire on left click
+		event.preventDefault()
+		var newNodeType = $(this).text() //Get name of node
 
-	var newNodeType = $(this).text() //The type of the selected node
+		$(document).one('mouseup', function(event) { //Only fire event one time per click
 
-	$('#background-grid').mousedown( function (event) {
-		$('#background-grid').off('mouseup', dropHandler)
-	})
+			if ($(event.target).attr('id') == 'background-grid') { //Only place node in grid
+				//Get mouse location in current div
+				var mousePos = {x: event.offsetX, y: event.offsetY}
 
-	$('#top-bar, #tool-panel, #keyboard-container').mouseup( function (event) {
-		$('#background-grid').off('mouseup', dropHandler)
-	})
+				var newNode = addNode(newNodeType)
 
-	var dropHandler = function (event) {
-		//Get mouse location in current div
-		var mousePos = {x: event.offsetX, y: event.offsetY}
+				var newNodeDiv = buildNodeUI(newNode)
 
-		var newNode = addNode(newNodeType)
+				newNodeDiv.css({ //Set node at corect positon
+					top: mousePos.y + 'px',
+					left: mousePos.x + 'px'
+				})
 
-		var newNodeDiv = buildNodeUI(newNode)
+				newNode.position = { //Store node's position
+					top: mousePos.y,
+					left: mousePos.x
+				}
 
-		newNodeDiv.css({ //Set node at corect positon
-			top: mousePos.y + 'px',
-			left: mousePos.x + 'px'
-		})
+				newNodeDiv.appendTo('#background-grid')
 
-		newNode.position = { //Store node's position
-			top: mousePos.y,
-			left: mousePos.x
-		}
+				//Make node draggable
+				newNodeDiv.draggable({
+					handle: '.title',
+					drag: function() {
+						newNode.position = $(this).position() //Update node position
 
-		newNodeDiv.appendTo('#background-grid')
-
-		newNodeDiv.draggable({
-			handle: '.title',
-			drag: function() {
-				newNode.position = $(this).position() //Update node position
+					}
+				})
 
 			}
 		})
 	}
-
-	$('#background-grid').on('mouseup', dropHandler)
-
 })
 
 // Node View
