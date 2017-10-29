@@ -199,21 +199,21 @@ $('.tool-item').mousedown( function(event) {
 
 // Node View
 
-$('#node-view').bind( 'mousewheel', (event) => {
-	// console.log(event.originalEvent.deltaY)
-	var currentZoom = $('#node-view').css('zoom')
-	console.log(currentZoom)
-
-	if (event.originalEvent.deltaY > 0) {
-		currentZoom *= 0.75
-	} else if (event.originalEvent.deltaY < 0) {
-		currentZoom *= 1.5
-	}
-
-	// var zoomAmount = 2 * ( event.originalEvent.deltaY / Math.abs(event.originalEvent.deltaY) ) + 1
-	// console.log('Zoom amount: ', zoomAmount)
-	$('#node-view').animate({ 'zoom': currentZoom}, 50)
-})
+// $('#node-view').bind( 'mousewheel', (event) => {
+// 	// console.log(event.originalEvent.deltaY)
+// 	var currentZoom = $('#node-view').css('zoom')
+// 	console.log(currentZoom)
+//
+// 	if (event.originalEvent.deltaY > 0) {
+// 		currentZoom *= 0.75
+// 	} else if (event.originalEvent.deltaY < 0) {
+// 		currentZoom *= 1.5
+// 	}
+//
+// 	// var zoomAmount = 2 * ( event.originalEvent.deltaY / Math.abs(event.originalEvent.deltaY) ) + 1
+// 	// console.log('Zoom amount: ', zoomAmount)
+// 	$('#node-view').animate({ 'zoom': currentZoom}, 50)
+// })
 
 $('#background-grid').draggable({ //Make view position moveable
 	cancel: '.node'
