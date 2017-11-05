@@ -139,12 +139,23 @@ function addDropdown(node, element) {
 }
 
 function addBus(node, element) {
-	var newBus = $('<span />', {
-		class: 'bus',
+	var busWrapper = $('<div />', {
+		class: 'bus-wrapper'
+	})
+
+	var busLabel = $('<span />', {
+		class: 'bus-label',
 		text: element.label
 	})
 
-	return newBus
+	var newBus = $('<div />', {
+		class: 'bus'
+	})
+
+	busWrapper.append(newBus)
+	busWrapper.append(busLabel)
+
+	return busWrapper
 
 }
 

@@ -50,45 +50,43 @@ body {
   display: flex;
   flex-direction: row;
 }
+.bus-wrapper {
+  min-width: 100%;
+}
+.bus-wrapper > .bus-label {
+  min-width: 100%;
+}
+.bus-wrapper > .bus {
+  min-width: 0.7em;
+  min-height: 0.7em;
+  position: absolute;
+  background-color: blue;
+  border: 2px solid black;
+  border-radius: 0.5em;
+}
 .bus-in-wrapper {
   display: flex;
   flex-direction: column;
   width: 50%;
+}
+.bus-in-wrapper > .bus-wrapper > .bus-label {
+  float: left;
+  text-align: left;
+}
+.bus-in-wrapper > .bus-wrapper > .bus {
+  left: -0.5em;
 }
 .bus-out-wrapper {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
-.bus-in-wrapper > .bus {
-  width: 100%;
-  text-align: left;
-}
-.bus-in-wrapper > .bus:before {
-  content: " ";
-  /*Blank needed to make element appear*/
-  min-width: 0.7em;
-  min-height: 0.7em;
-  position: absolute;
-  left: -0.5em;
-  background-color: blue;
-  border: 2px solid black;
-  border-radius: 0.5em;
-}
-.bus-out-wrapper > .bus {
-  width: 100%;
+.bus-out-wrapper > .bus-wrapper > .bus-label {
+  float: right;
   text-align: right;
 }
-.bus-out-wrapper > .bus:after {
-  content: " ";
-  /*Blank needed to make element appear*/
-  min-width: 0.7em;
-  min-height: 0.7em;
-  position: absolute;
+.bus-out-wrapper > .bus-wrapper > .bus {
   right: -0.5em;
-  background-color: blue;
-  border: 2px solid black;
-  border-radius: 0.5em;
 }
 .node-control {
   display: inline;
