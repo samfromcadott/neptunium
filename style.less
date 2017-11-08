@@ -192,14 +192,14 @@ body {
 }
 
 #background-grid {
-	position: absolute;
+	position: relative;
 	top: -40000vh;
 	left: -40000vh;
 
-	width: 80000vh;
-	height: 80000vh;
+	min-width: 80000vh;
+	min-height: 80000vh;
 
-	background-color: @background-color;
+	background-color: rgba(0, 0, 0, 0);
 	--grid-color: #9fbbf2;
 	background-image: repeating-linear-gradient( /*Large horizontal lines*/
 		var(--grid-color),
@@ -225,6 +225,14 @@ body {
 		rgba(0, 0, 0, 0) 20px
 	);
 
+}
+
+#drawing {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 #keyboard-container {

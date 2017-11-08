@@ -152,6 +152,8 @@ function addBus(node, element) {
 		class: 'bus'
 	})
 
+	newBus.on('mousedown', connectHandler)
+
 	busWrapper.append(newBus)
 	busWrapper.append(busLabel)
 
@@ -173,8 +175,6 @@ $('.tool-item').mousedown( function(event) {
 		var newNodeType = $(this).text() //Get name of node
 
 		$(document).one('mouseup', function(event) { //Only fire event one time per click
-
-			if ($(event.target).attr('id') == 'background-grid') { //Only place node in grid
 				//Get mouse location in current div
 				var mousePos = {x: event.offsetX, y: event.offsetY}
 
@@ -198,6 +198,7 @@ $('.tool-item').mousedown( function(event) {
 				newNodeDiv.draggable({
 					cancel: '.node-control, .node-bus',
 					drag: function() {
+						updateLines()
 						newNode.position = $(this).position() //Update node position
 					},
 					start: function () {
@@ -215,7 +216,6 @@ $('.tool-item').mousedown( function(event) {
 
 				})
 
-			}
 		})
 	}
 })
@@ -241,6 +241,107 @@ $('.tool-item').mousedown( function(event) {
 $('#background-grid').draggable({ //Make view position moveable
 	cancel: '.node'
 })
+
+// Buses
+
+var draw = SVG('drawing')
+var lineArray = []
+
+function getBusPosition(div) {
+	return {
+		x: (div.offset().left - $('#background-grid').offset().left) + ( div.width() / 2 ),
+		y: (div.offset().top - $('#background-grid').offset().top) + ( div.height() / 2 )
+	}
+}
+
+function updateLines() {
+	for (currentLine of lineArray) {
+		var newStart = getBusPosition(currentLine.startDiv)
+		var newEnd = getBusPosition(currentLine.endDiv)
+
+		currentLine.vector.attr({
+			x1: newStart.x,
+			y1: newStart.y,
+			x2: newEnd.x,
+			y2: newEnd.y
+		})
+
+	}
+
+}
+
+function Line(start) {
+	this.startDiv = start
+
+	this.startPos = getBusPosition(start)
+	this.endPos = this.startPos
+
+	this.vector = draw.line(
+		this.startPos.x,
+		this.startPos.y,
+		this.endPos.x,
+		this.endPos.y
+	).stroke({
+		width: 10,
+		color: '#' + ( Math.random() * 0xffffff << 0).toString(16),
+		linecap: 'round'
+	}).style('z-index', '5')
+
+	this.connectBoxes = function (end) {
+		this.endDiv = end
+
+		var newEnd = getBusPosition(end)
+
+		this.vector.attr({
+			x2: newEnd.x,
+			y2: newEnd.y
+		})
+
+	}
+
+	this.dragline = function (event) {
+		this.vector.attr({
+			x2: event.offsetX,
+			y2: event.offsetY
+		})
+	}
+
+
+
+	lineArray[lineArray.length] = this
+}
+
+var connectHandler = function (event) {
+	if (event.which == 1) {
+		event.preventDefault()
+
+		var start = $(event.target)
+		var line = new Line(start)
+
+		$(document).mousemove( function (event) {
+			line.vector.attr({
+				x2: event.pageX - $('#background-grid').offset().left,
+				y2: event.pageY - $('#background-grid').offset().top
+			})
+		})
+
+		$(document).one('mouseup', function(event) {
+			var end = $(event.target)
+			$(document).off('mousemove')
+
+			if(end.hasClass('.bus') == true && end != start) {
+				line.connectBoxes(end)
+
+			} else {
+				line.vector.remove() //Remove the drawn line
+
+				delete line //Get rid of line object and reference in lineArray
+				lineArray.pop()
+			}
+
+		})
+	}
+}
 
 // Keyboard
 
