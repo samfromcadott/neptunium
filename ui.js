@@ -41,10 +41,10 @@ function buildNodeUI(node) {
 				addDropdown(node, currentElement).appendTo(controlArea)
 
 			} else if (currentElement.type == 'bus-in') {
-				addBus(node, currentElement).appendTo(busInWrapper)
+				addBus(node, currentElement, 'in').appendTo(busInWrapper)
 
 			} else if (currentElement.type == 'bus-out') {
-				addBus(node, currentElement).appendTo(busOutWrapper)
+				addBus(node, currentElement, 'out').appendTo(busOutWrapper)
 
 			}
 
@@ -138,7 +138,7 @@ function addDropdown(node, element) {
 	return dropdownWrapper
 }
 
-function addBus(node, element) {
+function addBus(node, element, direction) {
 	var busWrapper = $('<div />', {
 		class: 'bus-wrapper'
 	})
@@ -152,7 +152,14 @@ function addBus(node, element) {
 		class: 'bus'
 	})
 
-	newBus.on('mousedown', connectHandler)
+	if (direction == 'out') {
+		newBus.addClass('out') //Add out class
+		newBus.on('mousedown', connectHandler) //Add the ability to draw connections from outputs
+
+	} else if (direction == 'in') {
+		newBus.addClass('in') //Add in classs
+
+	}
 
 	busWrapper.append(newBus)
 	busWrapper.append(busLabel)
@@ -329,7 +336,7 @@ var connectHandler = function (event) {
 			var end = $(event.target)
 			$(document).off('mousemove')
 
-			if(end.hasClass('.bus') == true && end != start) {
+			if(end.is('.bus, .in') == true && end != start) {
 				line.connectBoxes(end)
 
 			} else {
