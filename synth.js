@@ -10,11 +10,14 @@ function addNode(type) {
 	}
 
 	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
+		nodeObject.id = 0
 		nodeTree[0] = nodeObject //Add node zero
+
 		return nodeTree[0]
 	} else {
 		var nodeList = Object.keys(nodeTree) //Create Array of keys in nodeTree
 		var lastKey = parseInt( nodeList[nodeList.length - 2] ) //Get highest numbered node (The very last node will always be inputNote)
+		nodeObject.id = lastKey + 1
 
 		nodeTree[lastKey + 1] = nodeObject //Create new node with key one higher than current highest
 		return nodeTree[lastKey + 1]

@@ -152,6 +152,8 @@ function addBus(node, element, direction) {
 		class: 'bus'
 	})
 
+	newBus.data('node', node.id)
+
 	if (direction == 'out') {
 		newBus.addClass('out') //Add out class
 		newBus.on('mousedown', connectHandler) //Add the ability to draw connections from outputs
@@ -294,7 +296,9 @@ function Line(start) {
 		linecap: 'round'
 	}).style('z-index', '5')
 
-	this.connectBoxes = function (end) {
+	this.connectBusses = function (start, end) {
+		nodeTree[start.data('node')].target = end.data('node')
+
 		this.endDiv = end
 
 		var newEnd = getBusPosition(end)
@@ -336,8 +340,8 @@ var connectHandler = function (event) {
 			var end = $(event.target)
 			$(document).off('mousemove')
 
-			if(end.is('.bus, .in') == true && end != start) {
-				line.connectBoxes(end)
+			if(end.is('.bus, .in') == true && end.data('node') != start.data('node')) {
+				line.connectBusses(start, end)
 
 			} else {
 				line.vector.remove() //Remove the drawn line
