@@ -96,12 +96,18 @@ function addNumber(node, element) {
 		class: 'number-input',
 		type: 'number',
 		value: node.values[element.value],
-		min: element.min,
-		max: element.max,
 		change: function () {
 			node.values[element.value] = parseInt( $(this).val(), 10 ) //Update value
 		}
 	})
+
+	if (typeof element.min === 'number') { //If a minimum is defined
+		numberInput.attr('min', element.min)
+	}
+	if (typeof element.max === 'number') { //If a maximum is defined
+		numberInput.attr('max', element.max)
+	}
+
 	numberInput.appendTo(numberWrapper)
 
 	//Label

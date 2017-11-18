@@ -11,7 +11,7 @@ var nodeTypes = {
 			cvIn: {type: 'bus-in', label: 'CV In'},
 			audioOut: {type: 'bus-out', label: 'Audio Out'},
 			frequency: {type: 'number', label: 'Frequency', value: 'frequency', min: 20, max: 20000},
-			detune: {type: 'number', label: 'Detune', value: 'detune', min: -2400, max: 2400},
+			detune: {type: 'number', label: 'Detune', value: 'detune'},
 			phase: {type: 'knob', label: 'Phase', value: 'phase', min: 0, max: 360},
 			waveform: {type: 'dropdown', label: 'Waveform', value: 'type', options: [
 				{label: 'Sine', value: 'sine'},
