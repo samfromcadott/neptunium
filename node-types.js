@@ -25,9 +25,24 @@ var nodeTypes = {
 		}
 	},
 	'Amplitude Envelope': {
-		ui: {
-			title: {type: 'title', text: 'Amplitude Envelope'}
+		values: {
+			attack: 0.1,
+			decay: 0.2,
+			sustain: 0.8,
+			release: 0.5
 		},
-		css: {}
+		ui: {
+			title: {type: 'title', text: 'Amplitude Envelope'},
+			audiIn:  {type: 'bus-in', label: 'Audio In'},
+			audioOut: {type: 'bus-out', label: 'Audio Out'},
+			attack: {type: 'number', label: 'Attack', value: 'attack', min: 0},
+			decay: {type: 'number', label: 'Decay', value: 'decay', min: 0},
+			sustain: {type: 'number', label: 'Sustain', value: 'sustain', min: 0},
+			release: {type: 'number', label: 'Release', value: 'release', min: 0}
+		},
+		css: {
+			'background-color': '#2b1246',
+			'color': '#e8e8e8'
+		}
 	}
 }
