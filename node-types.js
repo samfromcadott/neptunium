@@ -35,10 +35,10 @@ var nodeTypes = {
 			title: {type: 'title', text: 'Amplitude Envelope'},
 			audiIn:  {type: 'bus-in', label: 'Audio In'},
 			audioOut: {type: 'bus-out', label: 'Audio Out'},
-			attack: {type: 'number', label: 'Attack', value: 'attack', min: 0},
-			decay: {type: 'number', label: 'Decay', value: 'decay', min: 0},
-			sustain: {type: 'number', label: 'Sustain', value: 'sustain', min: 0},
-			release: {type: 'number', label: 'Release', value: 'release', min: 0}
+			attack: {type: 'number', label: 'Attack', value: 'attack', min: 0, step: 0.01},
+			decay: {type: 'number', label: 'Decay', value: 'decay', min: 0, step: 0.01},
+			sustain: {type: 'number', label: 'Sustain', value: 'sustain', min: 0, step: 0.01},
+			release: {type: 'number', label: 'Release', value: 'release', min: 0, step: 0.01}
 		},
 		css: {
 			'background-color': '#2b1246',

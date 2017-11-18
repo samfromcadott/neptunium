@@ -107,6 +107,9 @@ function addNumber(node, element) {
 	if (typeof element.max === 'number') { //If a maximum is defined
 		numberInput.attr('max', element.max)
 	}
+	if (typeof element.step === 'number') { //If a maximum is defined
+		numberInput.attr('step', element.step)
+	}
 
 	numberInput.appendTo(numberWrapper)
 
