@@ -31,9 +31,6 @@ function buildNodeUI(node) {
 			if (currentElement.type == 'title') {
 				newNodeDiv.prepend('<span class="title">'+currentElement.text+'</span>')
 
-			} else if (currentElement.type == 'knob') {
-				addKnob(node, currentElement).appendTo(controlArea)
-
 			} else if (currentElement.type == 'number') {
 				addNumber(node, currentElement).appendTo(controlArea)
 
@@ -56,34 +53,6 @@ function buildNodeUI(node) {
 	newNodeDiv.append(controlArea)
 
 	return newNodeDiv
-
-}
-
-function addKnob(node, element) {
-	//Wrapper for knob and label
-	var knobWrapper = $('<div class="wrapper"></div>')
-
-	//Knob
-	var newKnob = $('<input type="text" class="knob" value="'+node.values[element.value]+'">').knob({
-		change: function (v) {
-			node.values[element.value] = v //Update the value
-		},
-		min: element.min,
-		max: element.max,
-		width: 80,
-		height: 80,
-		thickness: 0.3,
-		angleOffset: -125,
-		angleArc: 250
-	})
-	newKnob.appendTo(knobWrapper)
-
-	//Label
-	var knobLabel = $('<span class="label">'+element.label+'</span>')
-	knobLabel.prependTo(knobWrapper)
-
-	//Return wrapper
-	return knobWrapper
 
 }
 
