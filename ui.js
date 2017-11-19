@@ -272,7 +272,7 @@ function Line(start) {
 		width: 10,
 		color: '#' + ( Math.random() * 0xffffff << 0).toString(16),
 		linecap: 'round'
-	}).style('z-index', '5')
+	}).addClass('bus-vector')
 
 	this.connectBusses = function (start, end) {
 		nodeTree[start.data('node')].target = end.data('node')
