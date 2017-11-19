@@ -80,6 +80,9 @@ function addNumber(node, element) {
 		numberInput.attr('step', element.step)
 	}
 
+	numberInput.data('node', node.id) //Add node and value data for connections
+	numberInput.data('value', element.value)
+
 	numberInput.appendTo(numberWrapper)
 
 	//Label
@@ -275,7 +278,13 @@ function Line(start) {
 	}).addClass('bus-vector')
 
 	this.connectBusses = function (start, end) {
-		nodeTree[start.data('node')].target = end.data('node')
+		if (end.is('.bus, .in') == true) { //When connecting busses to busses target is just a number
+			nodeTree[start.data('node')].target = end.data('node')
+
+		} else if (end.is('.number-input') == true) { //For busses to numbers it's an object
+			nodeTree[start.data('node')].target = {node: end.data('node'), value: end.data('value')}
+
+		}
 
 		this.endDiv = end
 
@@ -318,7 +327,10 @@ var connectHandler = function (event) {
 			var end = $(event.target)
 			$(document).off('mousemove')
 
-			if(end.is('.bus, .in') == true && end.data('node') != start.data('node')) {
+			if (end.is('.bus, .in') == true && end.data('node') != start.data('node')) {
+				line.connectBusses(start, end)
+
+			} else if (end.is('.number-input') == true && end.data('node') != start.data('node')) {
 				line.connectBusses(start, end)
 
 			} else {
