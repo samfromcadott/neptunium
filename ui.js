@@ -66,7 +66,7 @@ function addNumber(node, element) {
 		type: 'number',
 		value: node.values[element.value],
 		change: function () {
-			node.values[element.value] = parseInt( $(this).val(), 10 ) //Update value
+			node.values[element.value] = parseFloat( $(this).val(), 10 ) //Update value
 		}
 	})
 
