@@ -276,10 +276,10 @@ function Line(start) {
 	}).addClass('bus-vector')
 
 	this.connectBusses = function (start, end) {
-		if (end.is('.bus, .in') == true) { //When connecting busses to busses target is just a number
+		if (end.is('.bus, .in')) { //When connecting busses to busses target is just a number
 			nodeTree[start.data('node')].target.push( end.data('node') )
 
-		} else if (end.is('.number-input') == true) { //For busses to numbers it's an object
+		} else if (end.is('.number-input')) { //For busses to numbers it's an object
 			nodeTree[start.data('node')].target.push( {node: end.data('node'), value: end.data('value')} )
 
 		}
