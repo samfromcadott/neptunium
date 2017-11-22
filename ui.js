@@ -325,11 +325,11 @@ var connectHandler = function (event) {
 			var end = $(event.target)
 			$(document).off('mousemove')
 
-			if (end.is('.bus, .in') == true && end.data('node') != start.data('node')) {
-				line.connectBusses(start, end)
+			if (end.is('.bus, .in') && end.data('node') != start.data('node')) {
+				line.connectBusses(start, end) //When connecting a bus out to a bus in
 
-			} else if (end.is('.number-input') == true && end.data('node') != start.data('node')) {
-				line.connectBusses(start, end)
+			} else if (end.is('.number-input') && end.data('node') != start.data('node')) {
+				line.connectBusses(start, end) //When connecting a bus out to a number
 
 			} else {
 				line.vector.remove() //Remove the drawn line
