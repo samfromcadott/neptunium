@@ -193,14 +193,12 @@ $('.tool-item').mousedown( function(event) {
 					},
 					start: function () {
 						newNodeDiv.css({
-							'box-shadow': '6px 6px black',
-							'z-index': '2'
+							'box-shadow': '6px 6px black'
 						})
 					},
 					stop: function() {
 						newNodeDiv.css({
-							'box-shadow': '3px 3px black',
-							'z-index': '1'
+							'box-shadow': '3px 3px black'
 						})
 					}
 

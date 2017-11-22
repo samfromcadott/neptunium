@@ -63,6 +63,7 @@ body {
   background-color: blue;
   border: 2px solid black;
   border-radius: 0.5em;
+  z-index: 21;
 }
 .bus-in-wrapper {
   display: flex;
@@ -162,7 +163,7 @@ body {
 }
 #keyboard-container {
   position: fixed;
-  z-index: 10;
+  z-index: 22;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
