@@ -1,6 +1,8 @@
 //Object that contains all the nodes for the synthesizer
-var nodeTree = {
-	inputNote: {}
+var nodeTree = {}
+
+var inputNote = {
+	target: []
 }
 
 function addNode(type) {
@@ -10,17 +12,11 @@ function addNode(type) {
 		target: []
 	}
 
-	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
-		nodeObject.id = 0
-		nodeTree[0] = nodeObject //Add node zero
+	var nodeCount = Object.keys(nodeTree).length //Get number of nodes in nodeTree
+	nodeObject.id = nodeCount
 
-		return nodeTree[0]
-	} else {
-		var nodeList = Object.keys(nodeTree) //Create Array of keys in nodeTree
-		var lastKey = parseInt( nodeList[nodeList.length - 2] ) //Get highest numbered node (The very last node will always be inputNote)
-		nodeObject.id = lastKey + 1
+	nodeTree[nodeCount] = nodeObject //Add new node to the node tree
 
-		nodeTree[lastKey + 1] = nodeObject //Create new node with key one higher than current highest
-		return nodeTree[lastKey + 1]
-	}
+	return nodeTree[nodeCount]
+
 }
