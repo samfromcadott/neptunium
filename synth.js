@@ -6,7 +6,8 @@ var nodeTree = {
 function addNode(type) {
 	var nodeObject = {
 		type: type,
-		values: Object.assign({}, nodeTypes[type].values) //Copy default values form nodeTypes
+		values: Object.assign({}, nodeTypes[type].values), //Copy default values form nodeTypes
+		target: []
 	}
 
 	if ( Object.keys(nodeTree).length == 1 ) { //If no nodes exist except inputNote
