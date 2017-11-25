@@ -5,6 +5,8 @@ var inputNote = {
 	target: []
 }
 
+var mixer = new Tone.PanVol(0, 0).toMaster()
+
 function addNode(type) {
 	var nodeObject = {
 		type: type,
