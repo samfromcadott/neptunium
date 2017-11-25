@@ -32,6 +32,15 @@ var nodeTypes = {
 			'background-color': 'white'
 		}
 	},
+	'Mixer': {
+		ui: {
+			title: {type: 'title', text: 'Mixer'},
+			audioIn: {type: 'bus-in', label: 'Audio In'}
+		},
+		css: {
+			'background-color': 'white'
+		}
+	},
 	'Amplitude Envelope': {
 		values: {
 			attack: 0.1,
