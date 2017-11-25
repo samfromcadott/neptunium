@@ -133,7 +133,12 @@ function addBus(node, element, direction) {
 		class: 'bus'
 	})
 
-	newBus.data('node', node.id)
+	console.log(node.type);
+	if (node.type == 'Input Note') { //When the node is a note input set 'node' to 'Input Note'
+		newBus.data('node', 'Input Note')
+	} else {
+		newBus.data('node', node.id)
+	}
 
 	if (direction == 'out') {
 		newBus.addClass('out') //Add out class
@@ -276,11 +281,21 @@ function Line(start) {
 	}).addClass('bus-vector')
 
 	this.connectBusses = function (start, end) {
+		var startNode //Target array of starting node
+
+		console.log(start.data('node'));
+
+		if (start.data('node') == 'Input Note') { //When the starting node is an Input Note
+			startNode = inputNote
+		} else {
+			startNode = nodeTree[start.data('node')]
+		}
+
 		if (end.is('.bus, .in')) { //When connecting busses to busses target is just a number
-			nodeTree[start.data('node')].target.push( end.data('node') )
+			startNode.target.push( end.data('node') )
 
 		} else if (end.is('.number-input')) { //For busses to numbers it's an object
-			nodeTree[start.data('node')].target.push( {node: end.data('node'), value: end.data('value')} )
+			startNode.target.push( {node: end.data('node'), value: end.data('value')} )
 
 		}
 

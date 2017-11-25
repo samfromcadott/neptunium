@@ -1,4 +1,13 @@
 var nodeTypes = {
+	'Input Note': {
+		ui: {
+			title: {type: 'title', text: 'Input Note'},
+			noteOut: {type: 'bus-out', label: 'Value'}
+		},
+		css: {
+			'background-color': 'white'
+		}
+	},
 	'Oscillator': {
 		values: {
 			type: 'sine',
