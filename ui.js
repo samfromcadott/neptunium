@@ -136,6 +136,8 @@ function addBus(node, element, direction) {
 	console.log(node.type);
 	if (node.type == 'Input Note') { //When the node is a note input set 'node' to 'Input Note'
 		newBus.data('node', 'Input Note')
+	} else if (node.type == 'Mixer') { //When the node is a mixer set 'node' to 'Mixer'
+		newBus.data('node', 'mixer')
 	} else {
 		newBus.data('node', node.id)
 	}
@@ -282,8 +284,7 @@ function Line(start) {
 
 	this.connectBusses = function (start, end) {
 		var startNode //Target array of starting node
-
-		console.log(start.data('node'));
+		var target //Value or node of ending element
 
 		if (start.data('node') == 'Input Note') { //When the starting node is an Input Note
 			startNode = inputNote
@@ -292,12 +293,14 @@ function Line(start) {
 		}
 
 		if (end.is('.bus, .in')) { //When connecting busses to busses target is just a number
-			startNode.target.push( end.data('node') )
+			target = end.data('node')
 
 		} else if (end.is('.number-input')) { //For busses to numbers it's an object
-			startNode.target.push( {node: end.data('node'), value: end.data('value')} )
+			target = {node: end.data('node'), value: end.data('value')}
 
 		}
+
+		startNode.target.push( target ) //Add the new target to starting node's target array
 
 		this.endDiv = end
 
