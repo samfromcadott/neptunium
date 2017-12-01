@@ -133,7 +133,6 @@ function addBus(node, element, direction) {
 		class: 'bus'
 	})
 
-	console.log(node.type);
 	if (node.type == 'Input Note') { //When the node is a note input set 'node' to 'Input Note'
 		newBus.data('node', 'Input Note')
 	} else if (node.type == 'Mixer') { //When the node is a mixer set 'node' to 'Mixer'

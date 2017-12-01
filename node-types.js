@@ -30,7 +30,8 @@ var nodeTypes = {
 		},
 		css: {
 			'background-color': 'white'
-		}
+		},
+		component: Tone.Oscillator
 	},
 	'Mixer': {
 		ui: {
@@ -60,6 +61,7 @@ var nodeTypes = {
 		css: {
 			'background-color': '#2b1246',
 			'color': '#e8e8e8'
-		}
+		},
+		component: Tone.AmplitudeEnvelope
 	}
 }
