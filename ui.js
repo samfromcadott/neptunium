@@ -374,3 +374,22 @@ $("#hide-keyboard").click( () => {
 		$("#hide-keyboard").text('v')
 	}
 })
+
+var keyboard = new QwertyHancock({
+	id: 'keyboard',
+	width: 1000,
+	height: 100,
+	octaves: 3,
+	startNote: 'A2',
+	whiteNotesColour: 'white',
+	blackNotesColour: 'black',
+	hoverColour: '#f3e939'
+})
+
+keyboard.keyDown = function (note, frequency) {
+	playNote(frequency, 1)
+};
+
+keyboard.keyUp = function (note, frequency) {
+	stopNote(frequency)
+};
