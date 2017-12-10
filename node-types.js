@@ -63,5 +63,34 @@ var nodeTypes = {
 			'color': '#e8e8e8'
 		},
 		component: Tone.AmplitudeEnvelope
+	},
+	'LFO': {
+		values: {
+			type: 'sine',
+			min: 0,
+			max: 1,
+			frequency: 10,
+			amplitude: 1,
+			phase: 0
+		},
+		ui: {
+			title: {type: 'title', text: 'Low Frequency Oscillator'},
+			signalOut: {type: 'bus-out', label: 'Signal Out'},
+			frequency: {type: 'number', label: 'Frequency', value: 'frequency', min: 0.1, max: 20, step: 0.1},
+			amplitude: {type: 'number', label: 'Amplitude', value: 'amplitude', min: 0, max: 1, step: 0.01},
+			phase: {type: 'number', label: 'Phase', value: 'phase', min: 0, max: 360},
+			waveform: {type: 'dropdown', label: 'Waveform', value: 'type', options: [
+				{label: 'Sine', value: 'sine'},
+				{label: 'Square', value: 'square'},
+				{label: 'Sawtooth', value: 'sawtooth'},
+				{label: 'Triangle', value: 'triangle'}
+			]},
+			min: {type: 'number', label: 'Minimum', value: 'min', step: 0.1},
+			max: {type: 'number', label: 'Maximum', value: 'max', step: 0.1},
+		},
+		css: {
+			'background-color': 'white'
+		},
+		component: Tone.LFO
 	}
 }
