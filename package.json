@@ -1,0 +1,25 @@
+{
+  "name": "neptunium",
+  "version": "0.0.2",
+  "description": "Interactive, web-based, synthesizer",
+  "main": "ui.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samfromcadott/neptunium.git"
+  },
+  "keywords": [
+    "audio"
+  ],
+  "author": "Sam from Cadott",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/samfromcadott/neptunium/issues"
+  },
+  "homepage": "https://github.com/samfromcadott/neptunium#readme",
+  "devDependencies": {
+    "webpack": "^4.8.2"
+  }
+}

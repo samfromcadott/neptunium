@@ -281,6 +281,13 @@ function Line(start) {
 		linecap: 'round'
 	}).addClass('bus-vector')
 
+	// this.vector.dblclick( function() {
+	// 	this.vector.remove()
+	// 	lineArray.findIndex(function () {return this})
+	// 	delete this
+	//
+	// })
+
 	this.connectBusses = function (start, end) {
 		var startNode //Target array of starting node
 		var target //Value or node of ending element
